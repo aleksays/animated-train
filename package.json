@@ -1,7 +1,7 @@
 {
-  "name": "simple-landing-boilerplate",
+  "name": "animated-train",
   "version": "1.0.0",
-  "description": "Simple frontend boilerplate for ladings",
+  "description": "Animated train scene",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
