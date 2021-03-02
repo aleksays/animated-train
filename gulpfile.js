@@ -38,6 +38,10 @@ const path = {
         source: './assets/fonts/**/*',
         dest:   './build/assets/fonts/',
     },
+    audio: {
+        source: './assets/audio/**/*',
+        dest: './build/assets/audio',
+    }
 };
 
 // Clean
@@ -102,6 +106,13 @@ gulp.task('fonts', done => {
     done();
 });
 
+gulp.task('audio', done => {
+    gulp
+        .src(path.audio.source)
+        .pipe(gulp.dest(path.audio.dest));
+    done();
+});
+
 // BrowserSync
 function reload(done) {
     browsersync.reload();
@@ -126,4 +137,4 @@ gulp.task('watch', done => {
     done();
 });
 
-gulp.task('default', gulp.parallel('clean', 'css', 'html', 'scripts', 'fonts', 'images', 'browser-sync', 'watch'));
+gulp.task('default', gulp.parallel('clean', 'css', 'html', 'scripts', 'fonts', 'images', 'audio', 'browser-sync', 'watch'));

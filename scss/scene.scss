@@ -1,0 +1,327 @@
+@import './vars.scss';
+@import './mixins.scss';
+@import './keyframes.scss';
+
+body {
+  overflow: hidden;
+}
+.scene {
+  @include size(100%, 100vh);
+  background: linear-gradient(180deg, #9AECEC 0%, rgba(154, 236, 236, 0) 100%);
+}
+
+.background {
+  @include landscapeBox('../assets/img/background.svg', 10s, 167px, 0);
+}
+
+.rocks-front {
+  @include landscapeBox('../assets/img/rocks-front.svg', 15s, 247px, 137px);
+}
+
+.rocks-back {
+  @include landscapeBox('../assets/img/rocks-back.svg', 25s, 308px, 260px);
+}
+
+.rocks-between {
+  @include landscapeBox('../assets/img/rocks-between.svg', 19s, 246px, 250px);
+}
+
+.threes {
+  position: absolute;
+  height: 247px;
+  right: 0;
+  left: 0;
+  bottom: 100px;
+  background-image: url('../assets/img/threes.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 0 0;
+  animation: slide 19s linear infinite;
+}
+
+.sun {
+  @include size(250px);
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  background-image: url('../assets/img/sun.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 0 0;
+  transform: scale(0.55);
+
+  &:after {
+    content: '';
+    display: block;
+    @include size(275px);
+    background-color: #ECDC51;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 100%;
+    animation: theSun 3s cubic-bezier(0.19, 1, 0.22, 1) infinite both;
+  }
+}
+
+.cloud {
+  position: absolute;
+  animation: cloud 40s ease-in-out infinite;
+
+  &--small {
+    background-image: url('../assets/img/cloud-small.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 0 0;
+    @include size(230px, 120px);
+    top: 15%;
+    left: 25%;
+
+    &:nth-of-type(2) {
+      top: 12%;
+      left: 50%;
+      animation-duration: 35s;
+    }
+  }
+
+  &--large {
+    background-image: url('../assets/img/cloud-large.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 0 0;
+    @include size(385px, 146px);
+    right: 15%;
+    top: 18%;
+    animation-duration: 45s;
+  }
+}
+
+.train-wrapp {
+  width: 40%;
+  height: 300px;
+  position: absolute;
+  bottom: 134px;
+  right: 0;
+  --start-train-pos: 100%;
+  transform: translateX(var(--start-train-pos));
+  transition: transform 12s linear;
+  animation: goTrain 25s linear forwards;
+  animation-delay: 137s;
+}
+
+.locomotive {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  @include size(268.66px, 241px);
+
+  &__body {
+    animation: up-down 0.3s 0.1s ease-in-out infinite;
+    position: absolute;
+    top: 0;
+    right: 0;
+    @include size(268.66px, 241px);
+    background-image: url('../assets/img/locomotive.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 0 0;
+    z-index: 2;
+  }
+
+  &__roof {
+    animation: up-down-roof 0.3s 0.2s ease-in-out infinite;
+    @include size(96px, 24px);
+    background-image: url('../assets/img/roof.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 17px;
+    z-index: 3;
+  }
+
+  &__tube {
+    animation: up-down-roof 0.3s 0.1s ease-in-out infinite, tube 0.3s 0.2s ease-in-out infinite;
+    @include size(42px, 48px);
+    background-image: url('../assets/img/tube.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    position: absolute;
+    top: 34px;
+    left: 42px;
+    z-index: 1;
+  }
+
+  &__smoke {
+    animation: smoke 0.3s 0.2s linear infinite;
+    @include size(39px, 26px);
+    background-image: url('../assets/img/smoke.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    position: absolute;
+    top: 7px;
+    left: 53px;
+  }
+
+  &__wheel-connector {
+    animation: wheelConnector 2s linear infinite;
+    @include size(60px, 9px);
+    background-image: url('../assets/img/wheels-connector.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    position: absolute;
+    bottom: 20px;
+    left: -21px;
+    transform-origin: 90% 35%;
+  }
+
+  &__wheel {
+    animation: rotate 2s linear infinite;
+    @include size(46.09px);
+    background-image: url('../assets/img/wheel.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+    z-index: 3;
+
+    &--first {
+      left: 28px;
+    }
+    &--second {
+      left: 77px;
+    }
+  }
+
+  &__big-wheel {
+    animation: rotate 3s linear infinite;
+    @include size(93.5px);
+    background-image: url('../assets/img/wheel-large.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    z-index: 3;
+  }
+}
+
+.train {
+  @include size(210px, 205px);
+  position: absolute;
+  bottom: 0;
+  left: 252px;
+
+  &__body {
+    @include size(100%);
+    animation: up-down-roof 0.3s 0.2s ease-in-out infinite;
+    background-image: url('../assets/img/train.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &--orange {
+    left: 447px;
+
+    & .train__body {
+      background-image: url('../assets/img/train-orange.svg');
+      animation-delay: 0.1s;
+    }
+  }
+
+  &__wheel {
+    @include size(40px);
+    animation: rotate 2s linear infinite;
+    background-image: url('../assets/img/small-wheel.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+
+    &--1 {
+      left: 25px;
+    }
+    &--2 {
+      left: 65px;
+    }
+    &--3 {
+      right: 25px;
+    }
+    &--4 {
+      right: 65px;
+    }
+  }
+}
+
+.play-button {
+  @include flexCentred;
+  min-width: 150px;
+  height: 70px;
+  border-radius: 70px;
+  background-color: rgba(255,255,255,0.75);
+  outline: none;
+  border: none;
+  @include positionCenter;
+  z-index: 10;
+  cursor: pointer;
+  transition: background-color 190ms linear;
+  @include text(24px);
+
+  &:hover {
+    background-color: #fff;
+    &:after {
+      border-left-color: rgba(0,0,0,0.75);
+    }
+  }
+
+  &:before {
+    content: '';
+    width: 0;
+    height: 0;
+    display: block;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid rgba(0,0,0,0.25);
+    transition: border-color 190ms linear;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 25px;
+  }
+}
+
+.plane-frame {
+  @include size(100%, 100px);
+  position: absolute;
+  top: 200px;
+  left: 0;
+
+  & .plane {
+    @include size(285px, 130px);
+    background-image: url('../assets/img/plane.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: -285px;
+  }
+
+  &--go {
+    animation: plane 45s 40s linear;
+
+    & .plane {
+      animation: up-down-roof 0.3s 0.2s linear infinite;
+    }
+  }
+}
